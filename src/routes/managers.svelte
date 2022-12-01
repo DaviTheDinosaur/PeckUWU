@@ -1,14 +1,16 @@
-<script type="ts" context="module">
+<script lang="ts" context="module">
     let data: any;
     let signedIn = false;
-    export let departmentSignedIn;
-    export function getResponseData(file: string) : Promise<any> {
+    export let departmentSignedIn: any;
+    export function getResponseData(file: RequestInfo | URL) : Promise<any> | undefined {
       if(typeof(data) === "undefined") {
             fetch(file)
             .then(res => {
                 data = res.json();
                 return data;
-            }).catch(this.handleError);
+            }).catch((error) =>{
+                console.log(error)
+            });
       } else {
             return Promise.resolve(data);
       }
@@ -16,10 +18,10 @@
 
 
     function login(event: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement; }) {
-        let formData = new FormData(this);
+        let formData = new FormData();
 
-        const password = formData.get("password").toString();
-        const username = formData.get("username").toString();
+        const password = formData.get("password")?.toString() ?? "";
+        const username = formData.get("username")?.toString() ?? "";
 
         let data = getResponseData("../secrets/managers.json");
 

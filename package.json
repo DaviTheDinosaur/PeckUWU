@@ -12,7 +12,8 @@
     "compression": "^1.7.1",
     "package-lock.json": "^1.0.0",
     "polka": "next",
-    "sirv": "^1.0.0"
+    "sirv": "^1.0.0",
+    "tsconfig": "^7.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
