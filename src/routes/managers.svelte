@@ -1,42 +1,4 @@
-<script lang="ts" context="module">
-    let data: any;
-    let signedIn = false;
-    export let departmentSignedIn: any;
-    export function getResponseData(file: RequestInfo | URL) : Promise<any> | undefined {
-      if(typeof(data) === "undefined") {
-            fetch(file)
-            .then(res => {
-                data = res.json();
-                return data;
-            }).catch((error) =>{
-                console.log(error)
-            });
-      } else {
-            return Promise.resolve(data);
-      }
-    }
-
-
-    function login(event: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement; }) {
-        let formData = new FormData();
-
-        const password = formData.get("password")?.toString() ?? "";
-        const username = formData.get("username")?.toString() ?? "";
-
-        let data = getResponseData("../secrets/managers.json");
-
-        if(data.hasOwnProperty(username)){
-            if(data[username]["password"] == password){
-                departmentSignedIn = data[username]["department"];
-                signedIn = true;
-                console.log(`Logged in ${username} for department ${departmentSignedIn}`)
-            }
-        }
-    }
-</script>
-    
-
-
+<script defer type="module" src="../svelteScripts/managers"></script>
 <h2>If you're a manager and can't login contact Elo on Slack</h2>
 
 {#if !signedIn}
@@ -52,5 +14,5 @@
         <button type="submit">Login</button>
     </form>
 {:else}
-    
+    <ManagerControlPanel></ManagerControlPanel>>
 {/if}

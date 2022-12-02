@@ -1,8 +1,7 @@
-<script type="ts">
-    import { loop_guard } from "svelte/internal";
+<script lang="ts" context="module">
 
-    let barsCssChief = [];
-    let barsCssDelphi = [];
+    let barsCssChief: any[] = [];
+    let barsCssDelphi: any[] = [];
     //Fabrication
     let chiefWidthFab = 30;
     let delphiWidthFab = 100;
