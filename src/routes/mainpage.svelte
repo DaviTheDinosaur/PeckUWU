@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 
-    let barsCssChief: any[] = [];
-    let barsCssDelphi: any[] = [];
+    let barsCssChief: String[] = [];
+    let barsCssDelphi: String[] = [];
     //Fabrication
     let chiefWidthFab = 30;
     let delphiWidthFab = 100;

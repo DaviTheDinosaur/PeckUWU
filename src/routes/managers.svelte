@@ -1,23 +1,22 @@
-<script type="module" lang="ts">
+<script context="module" lang="ts">
     import ManagerControlPanel from "../components/managerControlPanel.svelte";
 
     let data: any;
     let signedIn = false;
     export let departmentSignedIn: any;
     export function getResponseData(file: RequestInfo | URL) : Promise<any> | undefined {
-    if(typeof(data) === "undefined") {
-            fetch(file)
-            .then(res => {
-                data = res.json();
-                return data;
-            }).catch((error) =>{
-                console.log(error)
-            });
-    } else {
-            return Promise.resolve(data);
+        if(typeof(data) !== "undefined") {
+                fetch(file)
+                .then(res => {
+                    data = res.json();
+                    return data;
+                }).catch((error) => {
+                    console.log(error)
+                });
+        } else {
+                return Promise.resolve(data);
+        }
     }
-    }
-
 
     async function login(event: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement; }) {
         let formData = new FormData();
@@ -36,6 +35,7 @@
         }
     }
 </script>
+
 <h2>If you're a manager and can't login contact Elo on Slack</h2>
 
 {#if !signedIn}
