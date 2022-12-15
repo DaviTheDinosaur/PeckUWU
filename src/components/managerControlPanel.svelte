@@ -1,6 +1,6 @@
 <script>
     import { tweened } from "svelte/motion"
-    import { departmentSignedIn, getResponseData } from "../routes/managers.svelte"
+    import { departmentSignedIn, getResponseData } from "../sveltescripts/managers.ts"
     var fs = require('fs');
     let percentCheckpoint;
     let deadline;
